@@ -1,13 +1,12 @@
 --consulta 1
 SELECT 
-(tecnico.tecnico_nombre || ' ' || tecnico.tecnico_apellido ) as Tecnico,
 extract (year from mantenimiento.mantenimiento_fecha_e) as año,
+(tecnico.tecnico_nombre || ' ' || tecnico.tecnico_apellido ) as Tecnico,
 count (mantenimiento) as mantenimientos_realizados
 FROM mantenimiento
 inner join tecnico on mantenimiento.tecnico_id=tecnico.tecnico_id 
 WHERE to_char(mantenimiento.mantenimiento_fecha_e, 'YYYY') = '2021' 
 group by año, tecnico
-
 
 --consulta 2
 select 
@@ -20,6 +19,7 @@ where ventas.producto_id = 1
 group by año, producto;
 
 --consulta 3
+select 
 extract (year from mantenimiento.mantenimiento_fecha_e) as año,
 producto_tipo.producto_tipo_nombre as nombre,
 sum (mantenimiento_costo) as total
@@ -27,8 +27,9 @@ from mantenimiento
 inner join producto_mantenimiento on mantenimiento.mantenimiento_id = producto_mantenimiento.mantenimiento_id
 inner join producto on producto_mantenimiento.producto_id=producto.producto_id
 inner join producto_tipo on producto.producto_tipo_id = producto_tipo.producto_tipo_id
-where to_char(mantenimiento.mantenimiento_fecha_e, 'YYYY') = '2021'  
+where to_char(mantenimiento.mantenimiento_fecha_e, 'YYYY') = '2021'  and mantenimiento_completado = 'true'
 group by año,  nombre
+
 --consulta 4
 select 
 extract(year from producto.producto_fecha_e) as año,

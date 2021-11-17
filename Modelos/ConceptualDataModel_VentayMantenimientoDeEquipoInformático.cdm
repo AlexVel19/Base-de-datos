@@ -1620,8 +1620,8 @@ DESTINATION 0 Arial,8,N</a:FontList>
 <o:RelationshipSymbol Id="o18">
 <a:CreationDate>1636776406</a:CreationDate>
 <a:ModificationDate>1636855220</a:ModificationDate>
-<a:Rect>((-6348,-19041), (2292,-3410))</a:Rect>
-<a:ListOfPoints>((-4505,-19041),(-4468,-11029),(411,-11029),(411,-3410))</a:ListOfPoints>
+<a:Rect>((-6367,-19041), (2273,-3410))</a:Rect>
+<a:ListOfPoints>((-4505,-19041),(-4505,-11029),(411,-11029),(411,-3410))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4628</a:ArrowStyle>
 <a:LineColor>11184640</a:LineColor>
@@ -1642,7 +1642,7 @@ DESTINATION 0 Arial,8,N</a:FontList>
 <o:RelationshipSymbol Id="o20">
 <a:CreationDate>1636776415</a:CreationDate>
 <a:ModificationDate>1636854555</a:ModificationDate>
-<a:Rect>((11073,-21527), (26580,-13470))</a:Rect>
+<a:Rect>((11073,-21337), (26580,-13470))</a:Rect>
 <a:ListOfPoints>((22950,-13470),(22950,-20757),(11073,-20757))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>4628</a:ArrowStyle>
@@ -3269,7 +3269,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1636778167</a:ModificationDate>
 <a:Modifier>ediso</a:Modifier>
 <a:ExtractionBranchName/>
-<a:TargetModelURL>file:///C|/Users/ediso/OneDrive - ULEAM/ULEAM/Quinto Nivel/Gestion de Base de Datos/VENTA Y MANTENIMIENTO DE EQUIPO INFORMÁTICO/LogicalDataModel_VentayMantenimientoDeEquipoInformático.ldm</a:TargetModelURL>
+<a:TargetModelURL>file:///C|/Users/ediso/OneDrive - ULEAM/ULEAM/Quinto Nivel/Gestion de Base de Datos/VENTA Y MANTENIMIENTO DE EQUIPO INFORMÁTICO/Modelos/LogicalDataModel_VentayMantenimientoDeEquipoInformático.ldm</a:TargetModelURL>
 <a:TargetModelID>EAE4161A-D395-4CED-89A4-EB82283D0483</a:TargetModelID>
 <a:TargetModelClassID>5F45F978-C4F3-4E35-A3FC-AF3318663A0F</a:TargetModelClassID>
 <c:SessionShortcuts>
