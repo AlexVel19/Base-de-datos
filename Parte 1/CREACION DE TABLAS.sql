@@ -1,68 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     16/11/2021 12:49:45                          */
+/* Created on:     18/11/2021 16:39:52                          */
 /*==============================================================*/
 
-
-drop index CLIENTE_LUGAR_FK;
-
-drop index CLIENTE_PK;
-
-drop table CLIENTE;
-
-drop index LUGAR_PK;
-
-drop table LUGAR;
-
-drop index TECNICO_MANTENIMIEINTO_FK;
-
-drop index MANTENIMIENTO_PK;
-
-drop table MANTENIMIENTO;
-
-drop index PRODUCTO_TIPO_FK;
-
-drop index PROVEEDOR_PRODUCTO_FK;
-
-drop index PRODUCTO_PK;
-
-drop table PRODUCTO;
-
-drop index PRODUCTO_MANTENIMIENTO_FK;
-
-drop index PRODUCTO_MANTENIMIENTO2_FK;
-
-drop index PRODUCT_MANTENIMIENTO_PK;
-
-drop table PRODUCTO_MANTENIMIENTO;
-
-drop index PRODUCTO_TIPO_PK;
-
-drop table PRODUCTO_TIPO;
-
-drop index PROVEEDOR_LUGAR_FK;
-
-drop index PROVEEDOR_PK;
-
-drop table PROVEEDOR;
-
-drop index TECNICO_TIPO_FK;
-
-drop index TECNICO_PK;
-
-drop table TECNICO;
-
-drop index TECNICO_TIPO_PK;
-
-drop table TECNICO_TIPO;
-
-drop index PRODUCTO_VENTAS_FK;
-
-drop index CLIENTE_VENTAS_FK;
-
-drop index VENTAS_PK;
-
-drop table VENTAS;
 
 /*==============================================================*/
 /* Table: CLIENTE                                               */
@@ -220,6 +160,37 @@ PRODUCTO_TIPO_ID
 );
 
 /*==============================================================*/
+/* Table: PRODUCTO_VENTAS                                       */
+/*==============================================================*/
+create table PRODUCTO_VENTAS (
+   VENTAS_ID            INT4                 not null,
+   PRODUCTO_ID          INT4                 not null,
+   constraint PK_PRODUCTO_VENTAS primary key (VENTAS_ID, PRODUCTO_ID)
+);
+
+/*==============================================================*/
+/* Index: PRODUCTO_VENTAS_PK                                    */
+/*==============================================================*/
+create unique index PRODUCTO_VENTAS_PK on PRODUCTO_VENTAS (
+VENTAS_ID,
+PRODUCTO_ID
+);
+
+/*==============================================================*/
+/* Index: PRODUCTO_VENTAS2_FK                                   */
+/*==============================================================*/
+create  index PRODUCTO_VENTAS2_FK on PRODUCTO_VENTAS (
+PRODUCTO_ID
+);
+
+/*==============================================================*/
+/* Index: PRODUCTO_VENTAS_FK                                    */
+/*==============================================================*/
+create  index PRODUCTO_VENTAS_FK on PRODUCTO_VENTAS (
+VENTAS_ID
+);
+
+/*==============================================================*/
 /* Table: PROVEEDOR                                             */
 /*==============================================================*/
 create table PROVEEDOR (
@@ -297,12 +268,10 @@ TECNICO_TIPO_ID
 create table VENTAS (
    VENTAS_ID            INT4                 not null,
    CLIENTE_ID           INT4                 not null,
-   PRODUCTO_ID          INT4                 not null,
    VENTAS_FECHA         DATE                 not null,
    VENTAS_CANTIDAD      NUMERIC              not null,
    VENTAS_SUBTOTAL      NUMERIC                not null,
    VENTAS_IVA           NUMERIC                not null,
-   VENTAS_TOTAL         NUMERIC                not null,
    VENTAS_TOTAL         NUMERIC                not null,
    VENTAS_FORMA_PAGO    VARCHAR(15)          not null,
    constraint PK_VENTAS primary key (VENTAS_ID)
@@ -320,13 +289,6 @@ VENTAS_ID
 /*==============================================================*/
 create  index CLIENTE_VENTAS_FK on VENTAS (
 CLIENTE_ID
-);
-
-/*==============================================================*/
-/* Index: PRODUCTO_VENTAS_FK                                    */
-/*==============================================================*/
-create  index PRODUCTO_VENTAS_FK on VENTAS (
-PRODUCTO_ID
 );
 
 alter table CLIENTE
@@ -355,7 +317,17 @@ alter table PRODUCTO_MANTENIMIENTO
       on delete restrict on update restrict;
 
 alter table PRODUCTO_MANTENIMIENTO
-   add constraint FK_PRODUCT_MANTENIM foreign key (PRODUCTO_ID)
+   add constraint FK_PRODUCTO_MANTENIM2 foreign key (PRODUCTO_ID)
+      references PRODUCTO (PRODUCTO_ID)
+      on delete restrict on update restrict;
+
+alter table PRODUCTO_VENTAS
+   add constraint FK_PRODUCTO_VENTAS foreign key (VENTAS_ID)
+      references VENTAS (VENTAS_ID)
+      on delete restrict on update restrict;
+
+alter table PRODUCTO_VENTAS
+   add constraint FK_PRODUCTO_VENTAS2 foreign key (PRODUCTO_ID)
       references PRODUCTO (PRODUCTO_ID)
       on delete restrict on update restrict;
 
@@ -372,10 +344,5 @@ alter table TECNICO
 alter table VENTAS
    add constraint FK_VENTAS_CLIENTE foreign key (CLIENTE_ID)
       references CLIENTE (CLIENTE_ID)
-      on delete restrict on update restrict;
-
-alter table VENTAS
-   add constraint FK_VENTAS_PRODUCTO foreign key (PRODUCTO_ID)
-      references PRODUCTO (PRODUCTO_ID)
       on delete restrict on update restrict;
 
