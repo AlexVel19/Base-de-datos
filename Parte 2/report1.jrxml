@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bffc75f2-d3c3-4e52-83b4-22b4e2c1eaee">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select
+extract(year from producto.producto_fecha_e) as año,
+proveedor.proveedor_nombre as proveedor,
+sum (producto_precio * producto_stock) as total_compras
+from producto
+inner join proveedor on producto.proveedor_id = proveedor.proveedor_id
+where proveedor.proveedor_id = producto.proveedor_id
+group by año,proveedor]]>
+	</queryString>
+	<field name="año" class="java.math.BigDecimal"/>
+	<field name="proveedor" class="java.lang.String"/>
+	<field name="total_compras" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="320" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="34" width="555" height="33" uuid="0b2631a3-1d04-42c0-bfa7-68a85762e6f0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Georgia" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de compras a proveedores por año]]></text>
+			</staticText>
+			<barChart>
+				<chart>
+					<reportElement x="89" y="67" width="389" height="253" uuid="62475ed2-6497-471e-a7d8-e7301bfe3fd1"/>
+					<chartTitle>
+						<font fontName="Georgia" size="12"/>
+					</chartTitle>
+					<chartSubtitle>
+						<font fontName="Georgia" size="12"/>
+					</chartSubtitle>
+					<chartLegend>
+						<font fontName="Georgia" size="12"/>
+					</chartLegend>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{año}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{proveedor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{total_compras}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Georgia" size="12"/>
+							</labelFont>
+							<tickLabelFont>
+								<font fontName="Georgia" size="12"/>
+							</tickLabelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font fontName="Georgia" size="12"/>
+							</labelFont>
+							<tickLabelFont>
+								<font fontName="Georgia" size="12"/>
+							</tickLabelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

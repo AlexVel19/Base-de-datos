@@ -118,7 +118,7 @@ create table MANTENIMIENTO (
    MANTENIMIENTO_FECHA_E DATE                 not null,
    MANTENIMIENTO_GARANTIA_FECHA DATE                 not null,
    MANTENIMIENTO_DETALLE VARCHAR(50)          not null,
-   MANTENIMIENTO_COSTO  MONEY                not null,
+   MANTENIMIENTO_COSTO  NUMERIC                not null,
    MANTENIMIENTO_COMPLETADO BOOL                 not null,
    constraint PK_MANTENIMIENTO primary key (MANTENIMIENTO_ID)
 );
@@ -145,7 +145,7 @@ create table PRODUCTO (
    PROVEEDOR_ID         INT4                 not null,
    PRODUCTO_TIPO_ID     INT4                 not null,
    PRODUCTO_NOMBRE      VARCHAR(100)         not null,
-   PRODUCTO_PRECIO      MONEY                not null,
+   PRODUCTO_PRECIO      NUMERIC                not null,
    PRODUCTO_STOCK       NUMERIC(4)           not null,
    PRODUCTO_FECHA_E     DATE                 not null,
    constraint PK_PRODUCTO primary key (PRODUCTO_ID)
@@ -300,9 +300,10 @@ create table VENTAS (
    PRODUCTO_ID          INT4                 not null,
    VENTAS_FECHA         DATE                 not null,
    VENTAS_CANTIDAD      NUMERIC              not null,
-   VENTAS_SUBTOTAL      MONEY                not null,
-   VENTAS_IVA           MONEY                not null,
-   VENTAS_TOTAL         MONEY                not null,
+   VENTAS_SUBTOTAL      NUMERIC                not null,
+   VENTAS_IVA           NUMERIC                not null,
+   VENTAS_TOTAL         NUMERIC                not null,
+   VENTAS_TOTAL         NUMERIC                not null,
    VENTAS_FORMA_PAGO    VARCHAR(15)          not null,
    constraint PK_VENTAS primary key (VENTAS_ID)
 );

@@ -10,7 +10,7 @@ begin
 	into año,total
 	from mantenimiento
 	inner join tecnico on mantenimiento.tecnico_id = tecnico.tecnico_id
-	where (tecnico.tecnico_nombre = tecnicoNmbre
+	where tecnico.tecnico_nombre  = tecnicoNmbre
 	group by año;
 end
 $body$
